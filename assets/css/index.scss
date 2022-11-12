@@ -5,20 +5,26 @@ body {
     color: #fff;
     background-color: #232533;
     min-height: 100vh;
-    display: flex;
-    align-items: center;
     line-height: 1.2;
+
+    @media (min-width: 800px) {
+        display: flex;
+        align-items: flex-start;
+    }
 }
 
 .drone {
     position: relative;
-    width: fit-content;
+    flex: 1 1 0;
+    max-width: fit-content;
+    overflow: hidden;
+    padding: 32px;
     margin: 0 auto;
 
     &__model {
         display: block;
-        max-width: min(800px, 100vw);
-        max-height: 100vh;
+        max-width: 100%;
+        max-height: calc(100vh - 64px);
         border-radius: 4px;
     }
 
@@ -30,11 +36,16 @@ body {
         border: 1px solid #efa765;
         transform: translate(-50%, -50%);
         box-shadow: 0 0 5px #efa765, inset 0 0 5px #efa765;
-        transition: backdrop-filter 0.25s, opacity 0.75s;
+        transition: backdrop-filter 0.25s, box-shadow 0.5s;
 
         &:hover {
             backdrop-filter: blur(3px);
             cursor: pointer;
+        }
+
+        &_active {
+            backdrop-filter: blur(3px);
+            box-shadow: 0 0 5px #efa765, inset 0 0 30px 10px #efa765;
         }
 
         &[data-type="frame"] {
@@ -65,19 +76,20 @@ body {
 }
 
 .options {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 320px;
     background: #111424;
     overflow: auto;
     padding: 32px;
+    flex-shrink: 0;
+
+    @media (min-width: 800px) {
+        position: sticky;
+        top: 0;
+        width: 320px;
+        height: 100vh;
+    }
 
     &__item {
-        &:not(:first-child) {
-            margin-top: 64px;
-        }
+        margin-bottom: 64px;
 
         h3 {
             font-size: 20px;

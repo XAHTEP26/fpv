@@ -19,15 +19,22 @@ function init() {
     part.addEventListener('click', () => {
       clearSelection();
       part.classList.add('drone__part_active');
-      host.classList.add('drone_active');
+      filterOptions(part.dataset.type);
     });
   });
   fetchOptions();
 }
 
 function clearSelection() {
-  host.classList.remove('drone_active');
   parts.forEach(part => part.classList.remove('drone__part_active'));
+  filterOptions();
+}
+
+function filterOptions(type) {
+  optionsContainer.querySelectorAll('.options__item').forEach(el => el.hidden = false);
+  if (type) {
+    optionsContainer.querySelectorAll(`.options__item:not([data-type~="${type}"])`).forEach(el => el.hidden = true);
+  }
 }
 
 async function fetchOptions() {
@@ -44,7 +51,7 @@ async function fetchOptions() {
   }));
   optionsContainer.innerHTML = items
     .map(item => `
-      <div class="options__item" data-type="${item.types.join(' ')}">
+      <div class="options__item" data-type="${item.types.join(' ')}" hidden>
         <h3>${item.name}</h3>
         <img src="${item.image}" alt="" />
         <p>${item.description}</p>
