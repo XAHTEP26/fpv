@@ -1,0 +1,95 @@
+@import 'the-new-css-reset/css/reset.css';
+@import './base';
+
+body {
+    color: #fff;
+    background-color: #232533;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    line-height: 1.2;
+}
+
+.drone {
+    position: relative;
+    width: fit-content;
+    margin: 0 auto;
+
+    &__model {
+        display: block;
+        max-width: min(800px, 100vw);
+        max-height: 100vh;
+        border-radius: 4px;
+    }
+
+    &__part {
+        position: absolute;
+        width: 10%;
+        aspect-ratio: 1 / 1;
+        border-radius: 50%;
+        border: 1px solid #efa765;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 5px #efa765, inset 0 0 5px #efa765;
+        transition: backdrop-filter 0.25s, opacity 0.75s;
+
+        &:hover {
+            backdrop-filter: blur(3px);
+            cursor: pointer;
+        }
+
+        &[data-type="frame"] {
+            left: 28%;
+            top: 55%;
+        }
+
+        &[data-type="motor"] {
+            left: 77%;
+            top: 67%;
+        }
+
+        &[data-type="fc"] {
+            left: 56%;
+            top: 49%;
+        }
+
+        &[data-type="camera"] {
+            left: 43%;
+            top: 57%;
+        }
+
+        &[data-type="vtx"] {
+            left: 65%;
+            top: 37%;
+        }
+    }
+}
+
+.options {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 320px;
+    background: #111424;
+    overflow: auto;
+    padding: 32px;
+
+    &__item {
+        &:not(:first-child) {
+            margin-top: 64px;
+        }
+
+        h3 {
+            font-size: 20px;
+            font-weight: 500;
+            color: #efa765;
+            margin-bottom: 16px;
+        }
+
+        img {
+            display: block;
+            border-radius: 4px;
+            margin-bottom: 16px;
+        }
+    }
+}

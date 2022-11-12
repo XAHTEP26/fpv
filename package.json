@@ -1,0 +1,19 @@
+{
+  "name": "fpv",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "scripts": {
+    "dev": "vite --open",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "eslint": "^8.24.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "sass": "^1.55.0",
+    "vite": "^3.1.3"
+  },
+  "dependencies": {
+    "the-new-css-reset": "^1.7.3"
+  }
+}
